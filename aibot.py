@@ -11,32 +11,32 @@ from pydub import AudioSegment
 import ffmpeg
 import shutil
 
-# ✅ Ensure ffmpeg is available
+#  Ensure ffmpeg is available
 ffmpeg_path = shutil.which("ffmpeg")
 if ffmpeg_path:
     AudioSegment.converter = ffmpeg_path
 else:
     raise FileNotFoundError("FFmpeg not found! Ensure it's installed properly.")
 
-# ✅ NLP Tools
+# NLP Tools
 recognizer = sr.Recognizer()
 tool = language_tool_python.LanguageToolPublicAPI('en-US')
 
-# ✅ Function to analyze text for improvements
+# Function to analyze text for improvements
 def analyze_text(text):
     matches = tool.check(text)
     corrections = [match.message for match in matches]
     sentiment = TextBlob(text).sentiment
     return corrections, sentiment
 
-# ✅ Function to generate AI audio response
+#Function to generate AI audio response
 def generate_audio(response_text):
     tts = gTTS(text=response_text, lang="en")
     audio_path = "response.mp3"
     tts.save(audio_path)
     return audio_path
 
-# ✅ Streamlit UI
+# Streamlit UI
 st.title("🎙 AI Chatbot for Tone & Language Improvement")
 st.write("Upload an audio file, and get AI feedback on your tone and language!")
 
@@ -59,7 +59,7 @@ if uploaded_file is not None:
         spoken_text = recognizer.recognize_google(audio_data)
         st.write("🗣 You said:", spoken_text)
 
-        # ✅ Get grammar corrections & sentiment analysis
+        #  Get grammar corrections & sentiment analysis
         corrections, sentiment = analyze_text(spoken_text)
 
         response = ""
