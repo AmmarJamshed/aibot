@@ -3,6 +3,8 @@ speechrecognition
 gtts
 language-tool-python
 textblob
+pydub
+ffmpeg
 
 
 
