@@ -1,0 +1,8 @@
+streamlit
+speechrecognition
+pyttsx3
+language-tool-python
+textblob
+
+
+ 
